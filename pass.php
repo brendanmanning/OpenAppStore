@@ -1,3 +1,4 @@
 <?php
+    /* CHANGE THIS - LEAVING THE DEAFULT VALUE WILL MAKE YOUR SITE INSECURE */
 	define("PASSWORD", "OpenAppStore");
 ?>

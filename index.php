@@ -1,3 +1,6 @@
+<?php
+	include 'ssl.php';
+?>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>jLinux Appstore</title>
@@ -7,7 +10,7 @@
 ?>
 
 <style>
-@import url(http://fonts.googleapis.com/css?family=Antic+Slab);
+@import url(https://fonts.googleapis.com/css?family=Antic+Slab);
 
 html,body {
   height:100%;
@@ -16,11 +19,27 @@ html,body {
 h1 {
   font-family: 'Antic Slab', serif;
   font-size:80px;
-  color:#DDCCEE;
+  color:<?php
+  	require_once 'config.php';
+  	if(TEXTCOLOR == "") {
+  		echo "#B7BFBA"; //gray is the deafult
+  	} else {
+  		echo TEXTCOLOR;
+  	}
+  
+  ?>;
 }
 
 .lead {
-	color:#DDCCEE;
+	color:<?php
+  	require_once 'config.php';
+  	if(TEXTCOLOR == "") {
+  		echo "#B7BFBA"; //gray is the deafult
+  	} else {
+  		echo TEXTCOLOR;
+  	}
+  
+  ?>;
 }
 
 
@@ -29,7 +48,16 @@ h1 {
   margin: 0 auto;
   width: 100%;
   min-height:50%;
-  background-color:#110022;
+  background-color:
+  <?php
+  	require_once 'config.php';
+  	if(COLOR == "") {
+  		echo "#000000"; //black is the deafult
+  	} else {
+  		echo COLOR;
+  	}
+  
+  ?>;
   color:#eee;
   overflow:hidden;
 }
@@ -119,7 +147,7 @@ h1 {
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
 		
-			echo '<div class="col-md-4">
+			echo '
            			 <div class="panel panel-default">
                			 <div class="panel-heading">
                   		<h3 class="">' . $row['app'] . ' | <a href="install.php?a=' . $row['app'] . '">Install ' . $row['app'] . '</a></h3>
@@ -128,25 +156,24 @@ h1 {
                 </div>
                 <div class="panel-body">' . $row['summary'] . '</div>
             </div>
-        </div>';
+        ';
 	}
 }
 	
 
 ?>        
-    <div class="row">
-        <div class="col-lg-12 target">
-            <br class="">
-            <br class="">
-            <p class="pull-right"><a href="https://github.com/brendanmanning/OpenAppStore" class="">Proudly made with OpenAppStore</a> | <a href="addapp.php" class="">Admin Area</a></p>
-            <br class="">
-            <br class="">
-        </div>
-    </div>
+    <?php
+    		include 'footer.php';
+    ?>
 </div>
 <?php
 	if($_GET['success'] == 1) {
 		echo "<script>alert('Success!')</script>";
+	}
+	
+	/* If there's an error */
+	if($_GET['error'] == 1) {
+		echo "<script>alert('Sorry, there was an error with your previous action!')</script>";
 	}
 ?>
 </body>

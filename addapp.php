@@ -1,3 +1,6 @@
+<?php
+	include 'ssl.php';
+?>
 <html>
 <head>
 	<title>Add an app</title>
@@ -25,19 +28,31 @@
     					require_once "config.php";
     					echo TITLE;
     				?>!
-        <br class="">You must upload the file to your webhost first</p>
+        <br class="">You must upload the file to your webhost first<br><a href="upload.php">Need to upload a file?</a></p>
+        
    <form action="createapp.php" method="POST">
     <input type="text"
     placeholder="App title" name="name" class="form-control" contenteditable="true" style="">
   	<br>
     <input type="text" placeholder="App Description" name="summary" class="form-control" contenteditable="true">
     <br>
-    <input type="text" placeholder="File Name (inside content folder)" name="location" class="form-control" style="">
+    <input type="text" placeholder="File Name (inside content folder)" name="location" class="form-control" style="" value=<?php
+    													if($_GET['f'] != null) {
+    														echo '"' . $_GET['f'] . '"';
+    													} else {
+    														echo '""';
+    													}
+    												?>
+    	>
     <br>
     <i>Confirm your admin password: </i><input type="password" name="pwd" class="form-control">
     <br>
     <input type="submit" value="Add App!" class="btn btn-primary">
-	</form>    
+	</form>  
+	
+	<?php
+		include 'footer.php';
+	?>  
 </div>
 
 <!-- /container -->

@@ -1,5 +1,3 @@
 <?php
-    
-    /* Leave this blank. It will be filled during installation */
-
+	/* Leave this blank, it will be filled during installation */
 ?>
