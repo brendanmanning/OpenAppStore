@@ -13,6 +13,18 @@
 			}
 		}
 	</style>
+	
+	<script>
+		// Checks if the salt is long enough
+		function checkSaltLength() {
+			if(document.getElementById())
+		}
+		function isOk() {
+			// Called by submit button
+			// If this returns false, the form won't submit
+			
+		}
+	</script>
 </head>
 
 <body>
@@ -29,11 +41,13 @@
 <input type="hidden" name="ref" value="setup.php">
 <input type="text" name="db" placeholder="Database Name" class="form-control" required>
 <hr>
-<input type="password" name="adminPass" placeholder="Your login password (username is ADMIN)" required>
+<input type="password" name="adminPass" class="form-control" placeholder="Your login password (username is ADMIN)" required>
 <br>
-<input type="email" name="adminMail" placeholder="Your email" required>
+<input type="email" name="adminMail" placeholder="Your email" class="form-control" required>
 <br>
-<input type="submit" value="INSTALL!" class="btn btn-primary">
+<hr>
+<input type="text" name="salt" placeholder="Type random characters. Will be used to make the database more secure" onupdate="checkSaltLength()" class="form-control" id="salt" required> <p>Minimum 16 characters</p>
+<input type="submit" value="INSTALL!" class="btn btn-primary" onsubmit="return isOk()">
 </form>
 </div>
 </body>
