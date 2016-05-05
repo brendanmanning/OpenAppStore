@@ -1,10 +1,17 @@
 # OpenAppStore
-A software download portal written inn PHP
+A open source download portal written in PHP
 
 Every wanted a way to share applications with your customers in a simple, yet easy way?
 Look no further than OpenAppStore! OpenAppStore is a customizeable front-end for uploading
-and serving files (specifically softwares). Features include file uploads, SSL support, 
-BootStrap UI, and more. Whatever your use case is, OpenAppStore can fit your needs!
+and serving files (specifically softwares) written in PHP. OpenAppStore is filled with features, so no matter the specifics of your operation, OpenAppStore can work for you!
+## Features
+1. Powerful administrative area
+2. Screenshot gallery built in
+3. Material Design/Bootsrap Modern UI
+4. Open source - you're free to modify OpenAppStore as you see fit!
+5. Lightweight installation.
+  ..* Requirements:
+  ....* MySQL
 
 Best of all, the source code is on GitHub. So view, edit, customize, it's up to you!
 
