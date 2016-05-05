@@ -1,4 +1,6 @@
 <?php
+	
+    include 'admincheck.php';
 	/* Take and upload the user's file */
 	
 	/* If a file was uploaded */

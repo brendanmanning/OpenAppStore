@@ -13,7 +13,61 @@
 }
 </style>
 
-
+	<script>
+		/* JavaScript code for screenshot gallery */
+		function back() {
+			/* Get the current picture */
+			var currentPic = document.getElementById("picNum").innerHTML;
+			
+			var pics = document.getElementById("pictures").innerHTML;
+			pics = pics.split(",");
+			var currentIndex = currentPic - 1;
+			//don't use current pick after this point
+			var toShow = currentIndex - 1;
+			/*if(currentIndex == 0) {
+				toShow = pics.length;
+			}
+			
+			if(currentIndex == pics.length) {
+				toShow = 0;
+			}
+			*/
+			if(toShow == -1) {
+				toShow = pics.length - 1;
+			}
+			document.getElementById("image").src = "img/" + pics[toShow];
+			document.getElementById("picNum").innerHTML = toShow + 1;
+			
+			
+		}
+		
+		function nextPic() {
+			/* Get the current picture */
+			var currentPic = document.getElementById("picNum").innerHTML;
+			
+			var pics = document.getElementById("pictures").innerHTML;
+			pics = pics.split(",");
+			var currentIndex = currentPic - 1;
+			//don't use current pick after this point
+			var toShow = currentIndex + 1;
+			/*if(currentIndex == 0) {
+				toShow = pics.length;
+			}
+			
+			if(currentIndex == pics.length) {
+				toShow = 0;
+			}
+			*/
+			if(toShow == pics.length) {
+				toShow = 0;
+			}
+			document.getElementById("image").src = "img/" + pics[toShow];
+			document.getElementById("picNum").innerHTML = toShow + 1;
+			
+		
+		
+		}
+	</script>
 	
 	
 
@@ -68,14 +122,62 @@
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
 		
-			echo '<a href="' . URL . "content/" . $row['link'] . '" class="btn btn-default">Download ' . $row['app'] . ' Now!</a>';
+			echo '<a href="' . URL . "content/" . $row['link'] . '" class="btn btn-default">';
+			echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
+			/* Added cloud download icon above */
+			
+			echo ' Download ' . $row['app'] . ' Now!</a>';
 			echo '<hr class="">';
 			echo '<center><h3><strong>What is ' . $a . '?</strong></h3>';
 			echo '<i>' . $row['summary'] . '</i></center>';
 			//echo 
+			
+			/* Now check to see if there's any screenshots for that app */
+			if($row['screenshots'] != null) {
+			/* If there are */
+			echo '<hr><h2>Pictures:</h2>';
+			
+			/* echo the gallery controls */
+			echo '<button class="btn btn-success" onclick="back()"><- Back</button>';
+			echo ' <button class="btn btn-success" onclick="nextPic()">Next -></button>';
+			echo '<br>';
+			echo '<br>';
+			/* This creates a hidden pharagraph that JavaScript uses to get the current picture of the gallery */
+			echo '<p id="picNum" hidden>1</p>';
+			
+				$shots = explode(",", $row['screenshots']);
+				$pics = "";
+				/* Create the img view */
+			echo '<img class="img-thumbnail" id="image" src="img/'. $shots[0] .'" alt="' . $_GET['a'] . '" width="350" height="240"><br>';
+				for($i = 0; $i < count($shots); $i++) {
+					//echo '<i>Picture #' . ($i + 1) . '</i><br>';
+					//echo '<img class="img-thumbnail" id="image" src="img/'. $shots[$i] .'" alt="Chania" width="350" height="240"><br>';
+					
+					//Create a string for another hidden <p> tag for javascript to get a list of all images 
+					if($i != 0) {
+						$pics .= ",";
+						//add the comma only if it's not the first loop
+					}
+					$pics .= $shots[$i];
+					
+				}
+				
+				/* Once all images are added to the text, output it */
+				echo '<p id="pictures" hidden>' . $pics . '</p>';
+			}
 	} 
 	} else {
 		echo '<h2>No Results</h2>';
+}
+
+
+/* Begin code for comment section */
+
+/* First check is commenting is enabled */
+if(COMMENTS == true) {
+	include 'commentbox.php';
+} else {
+	/* Comments are disabled */
 }
 	
 ?>

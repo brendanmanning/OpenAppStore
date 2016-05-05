@@ -6,6 +6,7 @@
 <title>jLinux Appstore</title>
 
 <?php
+	
 	include "css.php";
 ?>
 
@@ -47,7 +48,7 @@ h1 {
 .container-full {
   margin: 0 auto;
   width: 100%;
-  min-height:50%;
+  //min-height:50%;
   background-color:
   <?php
   	require_once 'config.php';
@@ -78,6 +79,7 @@ h1 {
 </style>
 </head>
 <body>
+
 <?php
 	/* check if OpenAppStore is installed */
 	if(file_exists("setup.php")) {
@@ -101,17 +103,12 @@ h1 {
             				echo SUBTITLE;
            			?>
             </p>
-            <br class="">
+           
             
         
         </div>
     </div>
-    <!-- /row -->
-    <br class="">
-    <br class="">
-    <br class="">
-    <br class="">
-    <br class="">
+    
 </div>
 
 
@@ -167,13 +164,21 @@ h1 {
     ?>
 </div>
 <?php
-	if($_GET['success'] == 1) {
+	if(isset($_GET['success'])) {
 		echo "<script>alert('Success!')</script>";
 	}
 	
 	/* If there's an error */
-	if($_GET['error'] == 1) {
+	if(isset($_GET['error'])) {
 		echo "<script>alert('Sorry, there was an error with your previous action!')</script>";
+	}
+	
+	if(isset($_GET['wrongpass'])) {
+		echo "<script>alert('Wrong password!')</script>";
+	}
+	
+	if(isset($_GET['loggedin'])) {
+		echo "<script>alert('Logged in!')</script>";
 	}
 ?>
 </body>

@@ -28,6 +28,8 @@
 	<body>
 	<?php
 		include 'menu.php';
+		// Check is admin
+		include 'admincheck.php';
 	?>
 	<!-- Show the UI components, including textboxes, forms and text -->
 	

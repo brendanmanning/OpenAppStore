@@ -1,4 +1,3 @@
-
 <html>
 <head>
 	<title>Setup Database</title>
@@ -30,8 +29,6 @@
 <input type="password" name="pass" placeholder="Database Password" class="form-control" required><br>
 <input type="hidden" name="ref" value="setup.php">
 <input type="text" name="db" placeholder="Database Name" class="form-control" required>
-<hr>
-<input type="password" name="adminPass" class="form-control" placeholder="Your login password (username is ADMIN)" required>
 <br>
 <input type="email" name="adminMail" placeholder="Your email" class="form-control" required>
 <br>

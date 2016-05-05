@@ -54,9 +54,10 @@ h1 {
         <div class="col-lg-12 text-center v-center">
           
           <h1>OpenAppStore Installed Successfully!</h1>
-          <p class="lead"><strong>To finish setup, there's two last things to do</strong><br>
-          	1. Edit pass.php to set your own password<br>
-            2. Delete the following files: setup.php, createdatabase.php, postinstall.php
+          <p class="lead"><strong>To finish setup, there's three last things to do</strong><br>
+          	1. <a href="login/register.php">Create an admin account (username must be admin)</a><br>
+            2. Delete the following files: setup.php, createdatabase.php, postinstall.php<br>
+            3. Login as admin and go to Manage Settings to customize OpenAppStore
           
           </p>
           

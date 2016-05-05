@@ -20,6 +20,9 @@
 <body>
 <?php
 	include "menu.php";
+	
+	// Check if admin
+	include 'admincheck.php';
 ?>
 <div class="container">
      <h1 class="" contenteditable="false">Add an App!</h1>
@@ -30,11 +33,11 @@
     				?>!
         <br class="">You must upload the file to your webhost first<br><a href="upload.php">Need to upload a file?</a></p>
         
-   <form action="createapp.php" method="POST">
+   <form action="createapp.php" method="POST" enctype="multipart/form-data">
     <input type="text"
-    placeholder="App title" name="name" class="form-control" contenteditable="true" style="">
+    placeholder="App title" name="name" class="form-control" contenteditable="true" style="" required>
   	<br>
-    <input type="text" placeholder="App Description" name="summary" class="form-control" contenteditable="true">
+    <input type="text" placeholder="App Description" name="summary" class="form-control" contenteditable="true" required>
     <br>
     <input type="text" placeholder="File Name (inside content folder)" name="location" class="form-control" style="" value=<?php
     													if($_GET['f'] != null) {
@@ -45,8 +48,10 @@
     												?>
     	>
     <br>
-    <i>Confirm your admin password: </i><input type="password" name="pwd" class="form-control">
-    <br>
+    <i>Add Screenshots of your app (optional)</i>
+    <input name="filesToUpload[]" id="filesToUpload" type="file" multiple=""/>
+   <br> 
+   
     <input type="submit" value="Add App!" class="btn btn-primary">
 	</form>  
 	
