@@ -10,8 +10,8 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 3. Material Design/Bootsrap Modern UI
 4. Open source - you're free to modify OpenAppStore as you see fit!
 5. Lightweight installation.
-  ..* Requirements:
-  ....* MySQL
+..* Requirements:
+....* MySQL
 
 Best of all, the source code is on GitHub. So view, edit, customize, it's up to you!
 
