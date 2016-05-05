@@ -122,7 +122,7 @@
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
 		
-			echo '<a href="' . URL . "content/" . $row['link'] . '" class="btn btn-default">';
+			echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
 			echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
 			/* Added cloud download icon above */
 			
