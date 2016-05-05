@@ -35,7 +35,7 @@
 <br>
 <input type="email" name="adminMail" placeholder="Your email" class="form-control" required>
 <br>
-<input type="submit" value="INSTALL!" class="btn btn-primary>
+<input type="submit" value="INSTALL!" class="btn btn-primary">
 </form>
 </div>
 </body>
