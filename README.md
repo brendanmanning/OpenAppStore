@@ -17,6 +17,13 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 2. MySQL Database + MySQL User with all privlidges on database
 3. File system access (Shared hosting is ok)
 
+## Installation
+1. Click Download ZIP button.
+2. Upload ZIP to webhost
+3. Extract zip 
+4. Browse to your site's URL
+5. Follow the instructions
+
 ## Screenshots
 ###Settings Page: 
 ![alt text](http://i.imgur.com/CJ5Yfyf.png "Screenshot #1")
