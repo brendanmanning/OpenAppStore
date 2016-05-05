@@ -14,17 +14,7 @@
 		}
 	</style>
 	
-	<script>
-		// Checks if the salt is long enough
-		function checkSaltLength() {
-			if(document.getElementById())
-		}
-		function isOk() {
-			// Called by submit button
-			// If this returns false, the form won't submit
-			
-		}
-	</script>
+	
 </head>
 
 <body>
@@ -45,9 +35,7 @@
 <br>
 <input type="email" name="adminMail" placeholder="Your email" class="form-control" required>
 <br>
-<hr>
-<input type="text" name="salt" placeholder="Type random characters. Will be used to make the database more secure" onupdate="checkSaltLength()" class="form-control" id="salt" required> <p>Minimum 16 characters</p>
-<input type="submit" value="INSTALL!" class="btn btn-primary" onsubmit="return isOk()">
+<input type="submit" value="INSTALL!" class="btn btn-primary>
 </form>
 </div>
 </body>
