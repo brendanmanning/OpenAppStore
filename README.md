@@ -13,7 +13,7 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 5. Lightweight installation.
 
 ## Requirements
-1. PHP 5+
+1. PHP 5.3.7+
 2. MySQL Database + MySQL User with all privlidges on database
 3. File system access (Shared hosting is ok)
 
