@@ -2,7 +2,9 @@
   - Created OpenAppStore
   - Basic config options
   - Ability to add apps to the database through addapp.php
+
 1.1
+
   - file uploads
     - Redirect after upload complete to Add App page to add file as a new software
   - Ability to change homepage color
@@ -10,7 +12,9 @@
   - Added footer to more pages
   - Fixed an error where SSL enabled sites would get a mixed HTTP/HTTPS warning from Google Chrome because Google Fonts would load over HTTP.
   - Lots of other stuff
+
 2.0
+
   - Stopped using pass.php to store admin passwords
     - You can also optionally allow people to sign up, although there are no features added by doing so
     - Passwords are stored using PHP Login Minimal (https://github.com/panique/php-login-minimal) in the MySQL database
