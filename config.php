@@ -8,7 +8,7 @@
     /* It is shown on the menu bar, homepage, and various places across your website */
 	define("TITLE", "OpenAppStore");
     /* Subtitle is shown below the title on the homepage */
-	define("SUBTITLE", "Powered By OpenAppStore");
+	define("SUBTITLE", "Powered By <a href='https://www.github.com/brendanmanning/OpenAppStore/'>OpenAppStore</a>");
     /* This feature is not currently active - You may ignore this */
 	define("PREFIX", "ignore ");
     /* Your administrator email, will be shown in the contact menu */
