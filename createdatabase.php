@@ -7,13 +7,13 @@
 	$ref = $_POST['ref'];
 		// Create connection
 		$conn = new mysqli($host, $user, $pass, $db);
-
 		// Check connection
 		if ($conn->connect_error) {
     			die("Connection failed: " . $conn->connect_error);
 		} 
 		
-		$sql = "CREATE TABLE IF NOT EXISTS `openappstore` (
+		$sql = "
+CREATE TABLE IF NOT EXISTS `openappstore` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `app` text NOT NULL COMMENT 'app title',
   `summary` text NOT NULL COMMENT 'summary of the app''s purpose',
@@ -21,9 +21,7 @@
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `screenshots` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
-";
-
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;";
 		if ($conn->query($sql) === TRUE) {
    			// echo "Database created successfully";
    			 $ok = true;
@@ -39,15 +37,28 @@
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_email` (`user_email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='user data' AUTO_INCREMENT=2 ;";
-
 if ($conn->query($sql) === TRUE) {
    			// echo "Database created successfully";
    			 $ok = true;
 		} else {
    			 die("Error creating database: " . $conn->error);
 		}
+        
+        $sql = "
+CREATE TABLE IF NOT EXISTS `openappstorestatic` (
+  `id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hidden` int(11) NOT NULL,
+  `title` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
+if($conn->query($sql) === TRUE) {
+   // All ok
+} else {
+   die("ERROR creating openappstorestatic database");
+}
 $conn->close();
-
 	if($ok == true) {
 		$dbFileStr = '<?php
 	$host = "[{host}]";
@@ -63,13 +74,9 @@ $conn->close();
 	$file = fopen("db.php", "w");
 	fwrite($file, $dbFileStr);
 	}
-
 fclose($file);
-
-
     // Now add database details to the login config
     $loginDBfile = '<?php
-
 /**
  * Configuration for: Database Connection
  *
@@ -90,14 +97,12 @@ define("DB_NAME", $database);
 define("DB_USER", $user);
 define("DB_PASS", $pass);
 ?>';
-
 // Now write to file
 $dbFile = fopen("login/config/db.php", "w");
 $loginDBfile = str_replace("{{host}}", $host, $loginDBfile);
 $loginDBfile = str_replace("{{user}}", $user, $loginDBfile);
 $loginDBfile = str_replace("{{pass}}", $pass, $loginDBfile);
 $loginDBfile = str_replace("{{database}}", $db, $loginDBfile);
-
 fwrite($dbFile, $loginDBfile);
 fclose($dbFile);
 header("Location: postinstall.php");
