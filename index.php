@@ -140,10 +140,10 @@ h1 {
 	if($result->num_rows > 0) {
 		//print a box for the app
 		while($row = $result->fetch_assoc()) {
-			$a = str_replace("'", "\'", $a);
+			/*$a = str_replace("'", "\'", $a);
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
-		
+			*/
 			echo '
            			 <div class="panel panel-default">
                			 <div class="panel-heading">
@@ -160,6 +160,10 @@ h1 {
 
 ?>        
     <?php
+    		// Footer code
+    		// Check for a FOOTER plugins
+    		include 'plugincore.php';
+    		runPlugin("FOOTER", "");
     		include 'footer.php';
     ?>
 </div>

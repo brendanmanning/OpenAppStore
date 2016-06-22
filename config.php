@@ -6,13 +6,13 @@
 	define("URL", "http://www.example.com"); 
     /* The title of your website */
     /* It is shown on the menu bar, homepage, and various places across your website */
-	define("TITLE", "OpenAppStore");
+	define("TITLE", "OpenAppstore");
     /* Subtitle is shown below the title on the homepage */
-	define("SUBTITLE", "Powered By <a href='https://www.github.com/brendanmanning/OpenAppStore/'>OpenAppStore</a>");
+	define("SUBTITLE", "Edit config.php to change this");
     /* This feature is not currently active - You may ignore this */
 	define("PREFIX", "ignore ");
     /* Your administrator email, will be shown in the contact menu */
-	define("CONTACT", "email@example.com");
+	define("CONTACT", "example@gmail.com");
     /* This defines the background color of the title part at the top of the homepage */
     /* it should be in hexadecimal format */
     /* If you are unsure of what color to use, go to color.adobe.com to help you choose */
@@ -24,4 +24,6 @@
     /* otherwise leave it false b/c it will direct users to an SSL connection their browsers may reject */
 	define("SSL", false); //true or false
 	define("REGISTERED", false); // Set to true to disable other people from signing up (reccommended)
+	// Which tags admins may use in pages
+	define("ALLOWEDHTML", '<p><a><img><strong><i><ol><ul><li>');
 ?>

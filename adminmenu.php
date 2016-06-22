@@ -6,6 +6,7 @@
         <li><a href="upload.php">Upload a file</a></li>
         <li><a href="posts.php">Remove posts</a></li>
         <li><a href="settings.php">Manage Settings</a></li>
+        <li><a href="pluginsettings.php">Manage Plugins</a></li>
         <li><a href="login/index.php?logout">Logout</a></li>
       </ul>
     </div>

@@ -1,3 +1,6 @@
 <?php
-	/* Leave blank, will be filled by installer */
+	$host = "localhost";
+	$user = "brenuzrr_bmweb";
+	$pass = "Archie29";
+	$database = "brenuzrr_bmcms";
 ?>

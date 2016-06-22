@@ -122,16 +122,21 @@
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
 		
-			echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
-			echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
-			/* Added cloud download icon above */
+		
+			/* Use a plugin if enabled */
+			require 'plugincore.php';
+			// Call the plugin function. If it returns false (no plugin was run), perform the default action.
+			$arr = array($row['app'], $row['link'], $row['summary']);
+			if (runPlugin("DOWNLOAD", $arr) == false) {
+				echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
+				echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
+				/* Added cloud download icon above */
 			
-			echo ' Download ' . $row['app'] . ' Now!</a>';
-			echo '<hr class="">';
-			echo '<center><h3><strong>What is ' . $a . '?</strong></h3>';
-			echo '<i>' . $row['summary'] . '</i></center>';
-			//echo 
-			
+				echo ' Download ' . $row['app'] . ' Now!</a>';
+				echo '<hr class="">';
+				echo '<center><h3><strong>What is ' . $a . '?</strong></h3>';
+				echo '<i>' . $row['summary'] . '</i></center>';
+			}
 			/* Now check to see if there's any screenshots for that app */
 			if($row['screenshots'] != null) {
 			/* If there are */
@@ -169,10 +174,7 @@
 	} else {
 		echo '<h2>No Results</h2>';
 }
-
-
 /* Begin code for comment section */
-
 /* First check is commenting is enabled */
 if(COMMENTS == true) {
 	include 'commentbox.php';

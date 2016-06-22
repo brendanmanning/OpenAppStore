@@ -89,5 +89,30 @@
         
         
         </form>
+     		 <hr>
      		 
+     		 <?php
+     		 	// Check if plugins are enabled //
+     		 	require 'pluginconfig.php';
+     		 	if(DOWNLOAD != false) 
+     		 	{
+     		 		// Download plugins are enabled
+     		 		// Check if the plugin has a settings file
+     		 		$settingsFile = str_replace(".php", "", DOWNLOAD) . "-settings.php";
+     		 		if(file_exists("plugins/" . $settingsFile)) {
+     		 			// There is a settings file
+     		 			echo '<h4>Plugin Settings</h4>';
+     		 			include  $settingsFile;
+     		 		} 
+     		 	}
+     		 	
+     		 	if(FOOTER != false) {
+     		 		$settingsFile = str_replace(".php", "", FOOTER) . "-settings.php";
+     		 		if(file_exists("plugins/" . $settingsFile)) {
+     		 			// There is a plugin
+     		 			echo '<h4>Plugin Settings</h4>';
+     		 			include $settingsFile;
+     		 }
+     		 		}	
+     		 ?>
      		 

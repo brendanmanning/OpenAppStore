@@ -10,7 +10,7 @@
 	$a = str_replace("~", "_", $a);
 	$a = str_replace("<", "_", $a);
 	$d = $_POST['summary'];
-	$d = str_replace("<", "_", $d);
+	$d = strip_tags($d, ALLOWEDHTML);
 	$l = $_POST['location'];
 	$l = str_replace("<", "_", $l);
 	

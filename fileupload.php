@@ -7,7 +7,12 @@
 	if($_FILES['file']['name']) {
 		/* Do something with the file */
 		if(!$_FILES['file']['error']) {
-			$newFileName = strtolower(rand(100,10000) . $_FILES['file']['name']); /* Create a temporary file name and append a random number */
+			if(isset($_POST['isPlugin'])) {
+				$newFileName = $_FILES['file']['name'];
+			} else {
+				$newFileName = strtolower(rand(100,10000) . $_FILES['file']['name']); /* Create a temporary file name and append a random number */
+			}
+			
 			if($_FILES['file']['size'] > 1000000000) { //if file is bigger than a GB
 				echo "<script>alert('Sorry. Files can't be above 1GB')</script>";
 				header("Location: index.php?error=1");
@@ -15,7 +20,11 @@
 				/* Catch this in case execution of script continues for some reason */
 			}
 			/* otherwise, continue*/
-			move_uploaded_file($_FILES['file']['tmp_name'], "content/" . $newFileName);
+			if(!isset($_POST['isPlugin'])) {
+				move_uploaded_file($_FILES['file']['tmp_name'], "content/" . $newFileName);
+			} else {
+				move_uploaded_file($_FILES['file']['tmp_name'], "plugins/" . $newFileName);
+			}
 			/* Move the file */
 			echo "ALL GOOD!";
 			/* The above message should never show, because now we will redirect to the addapp page where the user

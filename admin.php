@@ -10,6 +10,8 @@
 			//height = 80%;
 		}
 		</style>
+		
+		
 	<body>
 	
 	<?php
@@ -25,4 +27,14 @@
   <p>
   	<strong>ADMIN AREA</strong>
   	Use the menu options above to perfome admin actions!
+  	
+  	
+  	
+  	
+  	
   </p>
+  
+ 
+  
+  </body>
+  </html>
