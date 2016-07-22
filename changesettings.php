@@ -2,6 +2,12 @@
 	/* Get all the values from POST */
 	// Get signups checkbox
 	$signups = $_POST['signups'];
+	// Make sure settings are valid
+	if(isset($_POST['requireaccount'])) {
+		if(!isset($signups)) { 
+			die("<strong>You can't disable signups and force people to sign up to download at the same time!</strong>");
+		}
+	}
 	// Get force SSL checkbox
 	$ssl = $_POST['ssl'];
 	// Get the background hex 
@@ -44,6 +50,7 @@
     /* otherwise leave it false b/c it will direct users to an SSL connection their browsers may reject */
 	define("SSL", {{SSLVAL}}); //true or false
 	define("REGISTERED", {{RVAL}}); // Set to true to disable other people from signing up (reccommended)
+	define("REQUIREACCOUNT", {{RAVAL}});
 ?>';
 	$cfgFile = fopen("config.php", "w") or die("Unable to open file!");
 	
@@ -66,6 +73,11 @@
 	}
 	
 	
+	if(isset($_POST['requireaccount'])) {
+		$template = str_replace("{{RAVAL}}", "true", $template);
+	} else {
+		$template = str_replace("{{RAVAL}}", "false", $template);
+	}
 	// Don't forget to set the URL
 	$template = str_replace("{{URL}}", '"' . $url . '"', $template);
 	// write to file
