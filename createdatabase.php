@@ -58,6 +58,21 @@ if($conn->query($sql) === TRUE) {
 } else {
    die("ERROR creating openappstorestatic database");
 }
+
+$sql = "CREATE TABLE IF NOT EXISTS `openappstoreversions` (
+  `appid` int(11) NOT NULL,
+  `versionid` int(11) NOT NULL AUTO_INCREMENT,
+  `version` text NOT NULL,
+  `changes` text NOT NULL,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `file` text NOT NULL,
+  PRIMARY KEY (`versionid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;";
+if($conn->query($sql) === TRUE) {
+   // All ok
+} else {
+   die("ERROR creating openappstorestatic database");
+}
 $conn->close();
 	if($ok == true) {
 		$dbFileStr = '<?php
