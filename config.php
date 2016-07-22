@@ -22,7 +22,7 @@
 	define("TEXTCOLOR", "#FFFFFF"); 
     /* If your website has an SSL certificate, set this to true */
     /* otherwise leave it false b/c it will direct users to an SSL connection their browsers may reject */
-	define("SSL", true); //true or false
+	define("SSL", false); //true or false
 	define("REGISTERED", true); // Set to true to disable other people from signing up (reccommended)
 	define("REQUIREACCOUNT", false);
 ?>
