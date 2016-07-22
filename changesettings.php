@@ -51,6 +51,8 @@
 	define("SSL", {{SSLVAL}}); //true or false
 	define("REGISTERED", {{RVAL}}); // Set to true to disable other people from signing up (reccommended)
 	define("REQUIREACCOUNT", {{RAVAL}});
+	// Which tags admins may use in pages
+	define("ALLOWEDHTML", "<p><a><img><strong><i><ol><ul><li>");
 ?>';
 	$cfgFile = fopen("config.php", "w") or die("Unable to open file!");
 	
@@ -90,6 +92,3 @@
 	header("Location: admin.php");
 	
 ?>
-	
-	
-	
