@@ -3,16 +3,16 @@
     /* SET OPTIONS FOR OPENAPPSTORE */
     /* This is where you put the URL of your website */\
     /* It must end with a slash, like this / */
-	define("URL", "http://www.example.com"); 
+	define("URL", "https://www.github.com/brendanmanning/OpenAppStore"); 
     /* The title of your website */
     /* It is shown on the menu bar, homepage, and various places across your website */
-	define("TITLE", "OpenAppstore");
+	define("TITLE", "OpenAppStore");
     /* Subtitle is shown below the title on the homepage */
-	define("SUBTITLE", "Edit config.php to change this");
+	define("SUBTITLE", "Download apps for PC");
     /* This feature is not currently active - You may ignore this */
 	define("PREFIX", "ignore ");
     /* Your administrator email, will be shown in the contact menu */
-	define("CONTACT", "example@gmail.com");
+	define("CONTACT", "example@example.com");
     /* This defines the background color of the title part at the top of the homepage */
     /* it should be in hexadecimal format */
     /* If you are unsure of what color to use, go to color.adobe.com to help you choose */
@@ -22,8 +22,7 @@
 	define("TEXTCOLOR", "#FFFFFF"); 
     /* If your website has an SSL certificate, set this to true */
     /* otherwise leave it false b/c it will direct users to an SSL connection their browsers may reject */
-	define("SSL", false); //true or false
-	define("REGISTERED", false); // Set to true to disable other people from signing up (reccommended)
-	// Which tags admins may use in pages
-	define("ALLOWEDHTML", '<p><a><img><strong><i><ol><ul><li>');
+	define("SSL", true); //true or false
+	define("REGISTERED", true); // Set to true to disable other people from signing up (reccommended)
+	define("REQUIREACCOUNT", false);
 ?>

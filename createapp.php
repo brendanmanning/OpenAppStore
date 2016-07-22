@@ -14,6 +14,8 @@
 	$l = $_POST['location'];
 	$l = str_replace("<", "_", $l);
 	
+	
+	
 	/* Upload the screenshots */
 	
 	$total = count($_FILES['filesToUpload']['name']);
@@ -64,32 +66,26 @@
 	require_once "db.php";
 	// Create connection
 	$conn = new mysqli($host, $user, $pass, $database);
+	
 
 	// Check connection
 	if ($conn->connect_error) {
     		die("Connection failed: " . $conn->connect_error);
 	} 
-		/*//clean colons
-		$a = str_replace(";", "&#59;", $a);
-		$d = str_replace(";", "&#59;", $d);
-		$l = str_replace(";", "&#59;", $l);
-		
-		//clean script tags
-		$a = str_replace("<", "&lt;", $a);
-		$d = str_replace("<", "&lt;", $d);
-		$l = str_replace("<", "&lt;", $l);
-		
-		//clean slashes
-		$a = str_replace("/", "\/", $a);
-		$d = str_replace("/", "\/", $d);
-		$l = str_replace("/", "\/", $l);*/
-		
+		$original = mysqli_real_escape_string($conn, $_POST['original']);
+		$changes = mysqli_real_escape_string($conn, $_POST['changes']);
+		$version = mysqli_real_escape_string($conn, $_POST['version']);
 		$a = mysqli_real_escape_string($conn, $a);
 		$d = mysqli_real_escape_string($conn, $d);
 		$l = mysqli_real_escape_string($conn, $l);
-		
-		$sql = "INSERT INTO `" . $database . "`.`openappstore` (`app`, `summary`, `link`, `screenshots`) VALUES ('". $a . "', '" . $d . "', '" . $l . "', '" . $fileString . "');";
-		//die($sql);
+		if($_POST['original'] == "none") {
+			$sql = "INSERT INTO `" . $database . "`.`openappstore` (`app`, `summary`, `link`, `screenshots`) VALUES ('". $a . "', '" . $d . "', '" . $l . "', '" . $fileString . "');";
+		} else {
+			if(!isset($version)) {
+				die("Must have a version #");
+			}
+			$sql = "INSERT INTO `openappstoreversions` (appid,version,changes,file) VALUES ('" . $original . "','" . $version . "','" . $changes . "','" . $l . "');";
+		}
 		if ($conn->query($sql) === TRUE) {
    			 //echo "Database created successfully";
 		} else {

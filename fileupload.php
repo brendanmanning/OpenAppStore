@@ -1,5 +1,5 @@
 <?php
-	
+	$errors = "";
     include 'admincheck.php';
 	/* Take and upload the user's file */
 	
@@ -29,7 +29,9 @@
 			echo "ALL GOOD!";
 			/* The above message should never show, because now we will redirect to the addapp page where the user
 			can enter information for the file and post it as an app */
-			header("Location: addapp.php?f=" . $newFileName);
+			if(!isset($_POST['isPlugin'])) {
+				header("Location: addapp.php?f=" . $newFileName);
+			}
 			
 		} else {
 			/* Send to error page */
@@ -39,3 +41,26 @@
 		/* handle no file error */
 		echo "ERROR";
 	}
+	
+	
+	// If it was a plugin, unzip it and delete the archive
+	if(isset($_POST['isPlugin']))
+	{
+		$zip = new ZipArchive;
+		if ($zip->open("plugins/" . $newFileName) === TRUE) {
+    			$zip->extractTo("plugins/" . preg_replace('/\\.[^.\\s]{3,4}$/', '', $newFileName) . ".plugin");
+   			 $zip->close();
+		 	   echo 'ok';
+		} else {
+  			  $errors .= '<br>ZIP extraction failed! Things to check <li>That the file actually is a ZIP file</li><li>That the file was uploaded properly</li><li>That file uploads are enabled in your PHP settings</li>';
+		}	
+		
+		
+		if(!unlink("plugins/" . $newFileName)) {
+		 	   	$errors .= "<br>Could not delete ZIP file (" . "plugins/" . $newFileName . ")";
+		}
+		
+		if($errors == "") { header("Location: index.php?success"); } else { die("The following errors were enoucntered while uploading your file: " . $erros); }
+	}
+	
+	?>

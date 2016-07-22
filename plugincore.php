@@ -8,7 +8,7 @@
 			// Download plugin
 			if(DOWNLOAD != false) {
 				// call PluginRun() method
-				require "plugins/" . DOWNLOAD;
+				require "plugins/" . DOWNLOAD . "/" . str_replace(".plugin", "", DOWNLOAD) . "/plugin.php";
 				// Provide the plugin with the app's name, link, and summary
 				return PluginRun($options);
 			} else {
@@ -18,7 +18,7 @@
 			// Footer plugin
 			if(FOOTER != false) {
 				// Run the plugin
-				include "plugins/" . FOOTER;
+				include "plugins/" . FOOTER . "/" . str_replace(".plugin", "", FOOTER) . "/plugin.php";
 				return true;
 			} else {
 				return false;

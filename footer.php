@@ -9,7 +9,11 @@
             	if($login->isUserAdmin() == true) {
             		echo '<a href="https://github.com/brendanmanning/OpenAppStore" class="">Proudly made with OpenAppStore</a> | <a href="admin.php" class="">Admin Area</a> | <a href="login/index.php?logout">Logout</a></p>';
             	} else {
-            		echo '<a href="https://github.com/brendanmanning/OpenAppStore" class="">Proudly made with OpenAppStore</a> | <a href="login/index.php">Admin Login</a></p>';
+            		if($login->isUserLoggedIn() == true) {
+            			'<a href="https://github.com/brendanmanning/OpenAppStore" class="">Proudly made with OpenAppStore</a> | <a href="login/index.php?logout">Logout</a></p>';
+            		} else {
+            		echo '<a href="https://github.com/brendanmanning/OpenAppStore" class="">Proudly made with OpenAppStore</a> | <a href="login/index.php">Login</a></p>';
+            		}
             	}
             	
             	if($_SERVER['SERVER_PORT']  == 443) {

@@ -25,14 +25,21 @@
   		include 'adminmenu.php';
   	?>
   <p>
-  	<strong>ADMIN AREA</strong>
-  	Use the menu options above to perfome admin actions!
+  	<strong>Admin Home</strong>
+  	<i>If you cannot see the menu, use the buttons below</i>
+  	<hr>
   	
+    <li><a href="addapp.php">Add a software or app</a></li>
+    <li><a href="upload.php">Upload a file</a></li>
+    <li><a href="posts.php">Remove apps</a></li>
+    <li><a href="settings.php">Change settings</a></li>
+    <li><a href="pluginsettings.php">Manage plugins</a></li>
+    <li><a href="pageedit.php">Add a page</a></li>
+    <li><a href="login/index.php?logout">Logout</a></li>
+  
+  	</hr>
   	
-  	
-  	
-  	
-  </p>
+  	 
   
  
   

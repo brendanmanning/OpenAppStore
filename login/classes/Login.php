@@ -87,6 +87,9 @@ class Login
                         $_SESSION['user_email'] = $result_row->user_email;
                         $_SESSION['user_login_status'] = 1;
                         
+                        
+                      
+                        
 
                     } else {
                         $this->errors[] = "Wrong password. Try again.";

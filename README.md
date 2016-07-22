@@ -11,11 +11,9 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 3. Material Design/Bootsrap Modern UI
 4. Open source - you're free to modify OpenAppStore as you see fit!
 5. Lightweight installation.
-6. Plugin Support
-7. Support for non-download pages (for support, FAQs, etc)
 
 ## Requirements
-1. PHP 5.3.7+
+1. PHP 5+
 2. MySQL Database + MySQL User with all privlidges on database
 3. File system access (Shared hosting is ok)
 

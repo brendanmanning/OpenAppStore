@@ -5,14 +5,24 @@
 						?>
 		</title>
 		<?php
+			// Require site settings
+			include 'config.php';
 			include 'css.php';
+			require 'login/classes/Login.php';
+				$login = new Login();
 		?>
 		<style>
 			body {
   padding-top: 50px;
 }
 </style>
-
+<?php
+if(REQUIREACCOUNT) {
+	if($login->isUserLoggedIn() == false) {
+		include 'loginoverlaycss.php';
+	}
+}
+?>
 	<script>
 		/* JavaScript code for screenshot gallery */
 		function back() {
@@ -67,19 +77,45 @@
 		
 		
 		}
-	</script>
-	
-	
+		</script>
+		
+		<?php
+		if(REQUIREACCOUNT) {
+			if($login->isUserLoggedIn() == FALSE) {
+			echo '<script>
+		function showLogin() {
+			document.getElementById("topmenu").hidden = true;
+			document.getElementById("loginview").style.width = "100%";
+		}
+		
+		function closeLogin() {
+			location.reload();
+		}
+		
+	</script>';
+		}
+	}
+	?>
 
 	</head>
 	
 	<body>
-		
+		<div id="topmenu">
 		<?php
 			include "menu.php";
 		?>
-			
-			
+		</div>	
+	<?php
+		if(REQUIREACCOUNT) {
+			if($login->isUserLoggedIn() == FALSE) {
+		echo '
+	<div id="loginview" class="overlay">
+		<iframe src="login/index.php" allowtransparency="true" style="background: #FFFFFF;" height="90%", width="100%"></iframe>
+		<center><a onclick="closeLogin()" class="btn btn-default">Click here to close</a></center>
+	</div>';
+		}
+	}
+	?>	
 
 <div class="container">
   
@@ -90,34 +126,44 @@
     	echo $_GET['a'];
     	?>
     </h1>
-   <?php /*
-    <p class="lead"><i>Run this command in jLinux.</i><br></p>
-  <input type="text" class="form-control input-xl" value=
-  
-  <?php 
-  	require_once 'config.php';
-  	$app = $_GET['a'];
-  	echo "'" . PREFIX . strtolower($app) . "'";
-  ?>>*/
-  ?>
  
   <?php
   
   	require_once 'db.php';
   	require_once 'config.php';
+  	
+  	
 	$conn = new mysqli($host, $user, $pass, $database);
 	
 	if($conn->connect_error) {
 		die("<center><h2><strong>Apps failed to load</strong></h2><h3><i>Please try again later ðŸ˜ž</i></h3></center></body></html>");
 	}
-	$a = str_replace(";", "NOTALLOWED", $_GET['a']);
+	
+	$a = mysqli_real_escape_string($conn, $_GET['a']);
+	
 	$sql = "SELECT * FROM `openappstore` WHERE `app` = '$a';";
 	//echo $sql;
 	/* Do the actual command */
 	$result = $conn->query($sql);
-	if($result->num_rows > 0) {
+	if($result->num_rows > 0) { 
 		//print a box for the app
 		while($row = $result->fetch_assoc()) {
+		
+			/* Check if there are multiple versions of the app */
+			$sql = "SELECT * FROM `openappstoreversions` WHERE `appid` = " . mysqli_real_escape_string($conn, $row['id']) . " ORDER BY `date` DESC LIMIT 1;";
+			//die($sql);
+			$versionResult = $conn->query($sql);
+			
+			$fileLink = null;
+			
+			if($versionResult->num_rows > 0) {
+				while($r = $versionResult->fetch_assoc()) {
+					echo "<i>Version " . $r['version'] . "</i><br>";
+					$fileLink = $r['file'];
+				}
+			}
+			//die($versionResult);
+		
 			$a = str_replace("'", "\'", $a);
 			$d = str_replace("'", "\'", $d);
 			$l = str_replace("'", "\'", $l);
@@ -126,13 +172,41 @@
 			/* Use a plugin if enabled */
 			require 'plugincore.php';
 			// Call the plugin function. If it returns false (no plugin was run), perform the default action.
-			$arr = array($row['app'], $row['link'], $row['summary']);
+			if($fileLink == null) {
+				$arr = array($row['app'], $row['link'], $row['summary']);
+			} else {
+				$arr = array($row['app'], $fileLink, $row['summary']);
+			}
 			if (runPlugin("DOWNLOAD", $arr) == false) {
-				echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
-				echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
+				
+				
+				if($login->isUserLoggedIn() == true) {
+				if($fileLink == null) {
+					echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
+					} else {
+						echo '<a href="content/' . $fileLink . '" class="btn btn-default">';	
+					}
+					echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
 				/* Added cloud download icon above */
+				echo ' Download Now!</a>';
+				} else {
+					if(REQUIREACCOUNT) {
+						echo '<a onclick="showLogin()"><span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>Login to Download</a>';
+					} else {
+						if($fileLink == null) {
+					echo '<a href="content/' . $row['link'] . '" class="btn btn-default">';
+					} else {
+						echo '<a href="content/' . $fileLink . '" class="btn btn-default">';	
+					}
+					echo '<span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span>'; 
+				/* Added cloud download icon above */
+				echo ' Download Now!</a>';
+					}
+					
+				}
+				
 			
-				echo ' Download ' . $row['app'] . ' Now!</a>';
+				
 				echo '<hr class="">';
 				echo '<center><h3><strong>What is ' . $a . '?</strong></h3>';
 				echo '<i>' . $row['summary'] . '</i></center>';
