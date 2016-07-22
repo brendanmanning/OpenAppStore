@@ -32,6 +32,30 @@
 					label.innerHTML = labelText;
 				}
 			}
+			
+			function verifyaccountsetting() {
+				if(document.getElementById("box3").checked) {
+					if(document.getElementById("box1").checked == false) {
+						alert("WARNING: You are requiring users to register before downloading, but registration is disabled");
+					}
+				}
+			}
+			
+			function red(input) {
+				document.getElementById(input).value = "#DE1500";
+			}
+			function green(input) {
+				document.getElementById(input).value = "#00BF1A";
+			}
+			function blue(input) {
+				document.getElementById(input).value = "#00186E";
+			}
+			function black(input) {
+				document.getElementById(input).value = "#000000";
+			}
+			function white(input) {
+				document.getElementById(input).value = "#FFFFFF";
+			}
 			</script>
 	</head>
 	
@@ -51,16 +75,23 @@
      		 <br>
      		 <input type="checkbox" name="ssl" id="box2" />
      		 <label for="box2">Force SSL? (Only is you have a certificate)</label>
+     		 <br>
+     		 <input type="checkbox" name="requireaccount" id="box3"onchange="verifyaccountsetting()" />
+     		 <label for="box3">Require users register before downloading apps*</label>
+     		 
      		 <h4>Color Options</h4>
      		 <div class="input-field col s6">
           <i class="material-icons prefix">invert_colors</i>
-          <input id="color_input" type="text" class="validate" name="background" placeholder="Homepage Header Background" oninput="isOk()">
-
+          <input id="color_input" type="text" class="validate" name="background" placeholder="Homepage Header Background * Enter a hexidecimal or choose a color below *" oninput="isOk()">
+	<br>
+	<a onclick="red('color_input')">Red</a> | <a onclick="green('color_input')">Green</a> | <a onclick="blue('color_input')">Blue</a> | <a onclick="black('color_input')">Black</a> | <a onclick="white('color_input')">White</a>
         </div>
         
         <div class="input-field col s6">
           <i class="material-icons prefix">invert_colors</i>
-          <input id="text_color_input" type="text" class="validate" name="textcolor" placeholder="Homepage Header Text Color" oninput="isOk()">
+          <input id="text_color_input" type="text" class="validate" name="textcolor" placeholder="Homepage Header Text Color * Enter a hexidecimal or choose a color below *" oninput="isOk()">
+          <br>
+          <a onclick="red('text_color_input')">Red</a> | <a onclick="green('text_color_input')">Green</a> | <a onclick="blue('text_color_input')">Blue</a> | <a onclick="black('text_color_input')">Black</a> | <a onclick="white('text_color_input')">White</a>
         </div>
         
         <h4>Site Information</h4>
@@ -86,8 +117,7 @@
           
             </div>
         <input type="submit" class="btn waves" value="Update Settings" id="submitButton" onclick="isOk()">
-        
-        
+       <center><p>* Users may not be required to register when using certain download page extensions</p></center>
         </form>
      		 <hr>
      		 
@@ -114,5 +144,4 @@
      		 			include $settingsFile;
      		 }
      		 		}	
-     		 ?>
-     		 
+?>
