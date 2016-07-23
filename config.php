@@ -23,6 +23,7 @@
     /* If your website has an SSL certificate, set this to true */
     /* otherwise leave it false b/c it will direct users to an SSL connection their browsers may reject */
 	define("SSL", false); //true or false
-	define("REGISTERED", true); // Set to true to disable other people from signing up (reccommended)
+	define("REGISTERED", false); // Set to true to disable other people from signing up (reccommended) (However if you plan
+	//to activate this feature, do it from settings AFTER you've made your admin account)
 	define("REQUIREACCOUNT", false);
 ?>
