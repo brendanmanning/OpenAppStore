@@ -36,3 +36,6 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 
 ###App Download Page:
 ![alt text](http://i.imgur.com/YQ0D68W.png "Screenshot #4")
+
+#### Third party
+OpenAppStore uses medoo. It is licensed under the MIT License. [you can view it here](https://github.com/catfan/Medoo/blob/master/LICENSE)
