@@ -39,3 +39,4 @@ and serving files (specifically softwares) written in PHP. OpenAppStore is fille
 
 #### Third party
 OpenAppStore uses medoo. It is licensed under the MIT License. [you can view it here](https://github.com/catfan/Medoo/blob/master/LICENSE)
+OpenAppStore also uses php-login-minimal. I left the README (which includes a license) intact. [See it here](https://github.com/brendanmanning/OpenAppStore/blob/master/login/README.md)
