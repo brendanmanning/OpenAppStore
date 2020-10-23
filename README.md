@@ -1,3 +1,5 @@
+** DEPRECATED ** I am no longer working on this project. I made it while I was a young developer. It probably has a bunch of bugs/security flaws. PLEASE DO NOT USE AS IS FOR ANYTHING SERIOUS/MISSION CRITICAL. The foundation of the project, in my opinion, is good though. I would suggest modifying it to make it better. Forks/spinoffs encouraged.
+
 # OpenAppStore
 A open source download portal written in PHP
 
